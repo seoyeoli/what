@@ -29,7 +29,7 @@
 								<c:when test="${uservo ne null}">
 									<p>
 										<br>
-										${uservo.user_name}님 환영합니다.
+										${uservo.user_name}님 환영합니다.adada 
 										<br>
 									</p>
 									<div style="padding-left: 20px ; border-top: 1px solid lightgray" >
