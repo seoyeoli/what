@@ -1,6 +1,10 @@
 package com.my.company.user.controller;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.my.company.common.controller.SHA256Password;
 import com.my.company.common.service.commonService;
+import com.my.company.schedule.service.scheduleService;
+import com.my.company.schedule.vo.scheduleVO;
 import com.my.company.user.service.userService;
-import com.my.company.user.vo.memberVO;
 import com.my.company.user.vo.userVO;
 
 @Controller
@@ -29,6 +34,9 @@ public class userCtrl {
 	
 	@Resource(name="commonservice")
 	private commonService commonservice;
+	
+	@Resource(name = "scheduleservice")
+	scheduleService scheduleservice;
 	
 	
 	@RequestMapping("/user/signin.do")
@@ -69,9 +77,12 @@ public class userCtrl {
 			if(userservice.loginUser(uservo)){
 				uservo = userservice.selectUser(uservo);
 				
-				//회원가입이 되어있으면 회원권 조회함.
-				memberVO membervo = new memberVO();
-				membervo.setUser_num(uservo.getUser_num());
+				//스케줄 겁색
+				String sch_day = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+				scheduleVO schvo = new scheduleVO();
+				schvo.setUser_id(user_id);
+				schvo.setSch_day(sch_day);
+				List<Map<String, Object>> scheduleList = scheduleservice.scheduleList(schvo);
 				
 				
 				logger.debug(uservo.toString());
@@ -79,6 +90,7 @@ public class userCtrl {
 				session.setAttribute("user_id", uservo.getUser_id());
 				session.setAttribute("user_name", uservo.getUser_name());
 				session.setAttribute("uservo", uservo);
+				session.setAttribute("scheList", scheduleList);
 				response.sendRedirect(url);
 			}else {
 				response.setContentType("text/html; charset=UTF-8");

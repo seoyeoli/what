@@ -12,6 +12,7 @@
 			var day = now.getDate() < 10 ? "0"+ now.getDate() : now.getDate() ;
 			var curdate = year+"."+mon+"."+day;
 			document.getElementById("curdate").innerHTML = curdate;
+			
 		});
 	</script>
 </head>
@@ -29,16 +30,28 @@
 								<c:when test="${uservo ne null}">
 									<p>
 										<br>
-										${uservo.user_name}님 환영합니다.adada 
+										${uservo.user_name}님 환영합니다.
 										<br>
 									</p>
 									<div style="padding-left: 20px ; border-top: 1px solid lightgray" >
 										<br>
 										<h5 id="curdate"></h5>
 										<table class="table">
-										
+										<c:choose>
+											<c:when test="${fn:length(scheList)>0 }">
+											<c:forEach items="${scheList}" var="srow" begin="0" end="4">
+												<tr>
+													<td>${srow.SCH_TIME}</td>
+													<td>${srow.PROG_TYPE_NAME}</td> 
+													<td>${srow.PROG_TRAINER_NAME}</td> 
+												</tr>
+											</c:forEach>
+											</c:when>
+											<c:otherwise>
+												오늘의 일정이 없습니다.
+											</c:otherwise>
+										</c:choose>
 										</table>
-										<a href="/schedule/scheduleList.do?user_id=${uservo.user_id}" class="normallink">... 더보기</a>
 									</div>
 								</c:when>
 								<c:otherwise>

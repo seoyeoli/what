@@ -29,21 +29,16 @@ public class boardCtrl {
 	@RequestMapping("/board/boardList.do")
 	public ModelAndView boardList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		
 		boardVO boardvo1 = new boardVO();
 		boardVO boardvo2 = new boardVO();
-		
 		
 		//공지사항
 		boardvo1.setBoard_notice("Y");
 		List<Map<String, Object>> noticeList = boardservice.noticeList(boardvo1); 
 		
-		
-		
 		//최신글
 		boardvo2.setBoard_notice("N");
 		List<Map<String, Object>> boardList = boardservice.boardList(boardvo2);
-		
 		
 		ModelAndView mv = new ModelAndView("/board/boardList");
 		mv.addObject("noticeList", noticeList);
@@ -51,9 +46,6 @@ public class boardCtrl {
 
 		logger.debug("\n\n\t noticeList"+noticeList+"\n\n");
 		logger.debug("\n\n\t boardList"+boardList+"\n\n");
-		
-		
-		
 		return mv;
 	}
 	
