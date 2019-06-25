@@ -21,6 +21,6 @@
 		<div class="col-md-3" align="center" style="color: white"><a href="/common/main.do" class="topmenu"><b>MAIN</b></a></div> 
 		<div class="col-md-3" align="center" style="color: white"><a href="/board/boardList.do" class="topmenu"><b>BOARD</b></a></div>
 		<div class="col-md-3" align="center" style="color: white"><a href="javascript:void(0);" class="topmenu" onclick="fn_loginchkMovePage(true, '/schedule/scheduleList.do?user_id=${uservo.user_id}')"><b>SCHEDULE</b></a></div>
-		<div class="col-md-3" align="center" style="color: white"><a href="/common/main.do" class="topmenu"><b>PROGRAM</b></a></div> 
+		<div class="col-md-3" align="center" style="color: white"><a href="javascript:void(0);" class="topmenu" onclick="fn_loginchkMovePage(true, '/program/progList.do?user_id=${uservo.user_id}')"><b>PROGRAM</b></a></div> 
 	</div>
 </div>

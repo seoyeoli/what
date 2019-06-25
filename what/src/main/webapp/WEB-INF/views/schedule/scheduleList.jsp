@@ -65,10 +65,23 @@
 			}
 			//<<<<문서 로딩 시 오늘 날짜에 대한 스케줄 세팅END
 			
+			
+			//스케줄 등록 시 MODAL 화면에 flatfickr 넣음.
+			flatpickr("#addPicker", {
+				"allowInput" : true,
+				"enableTime" : true,
+				"dateFormat" : "Y-m-d H:i",
+				"inline" : true, 
+				"onOpen" : function(selectedDates, dateStr, instance) {
+					instance.setDate(instance.input.value, false);
+				},
+				"defaultDate" : "today",
+				"onChange" : function(){
+					document.getElementById("modalSelDate").innerHTML = document.getElementById("addPicker").value;
+				}
+				});
+			
 		});
-		
-		
-		
 	</script>
 </head>
 <body>
@@ -76,6 +89,8 @@
 	
 	<div class="wrap">
 	<div class="container">
+	
+	<!-- 캘린더와 일정 보여주는 DIV -->
 	<div class="row">
 		<div class="col-md-5" align="center">
 			<input type="text" class="selector" id="myDatePicker" placeholder="날짜를 선택하세요." hidden="true"/>
@@ -87,10 +102,52 @@
 			</table>
 		</div>
 	</div>
-	</div> 
+	
+	
+	
+	
+	
+	</div>
 	</div>
 	
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">
+		등록
+	</button>
 	
+	<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">  
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">등록하기</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+				<div class="row" style="margin:20px 20px 20px 20px">
+					<div>
+					<input type="text" class="selector" id="addPicker" placeholder="날짜를 선택하세요." hidden="true"/>
+					</div>
+					
+					<div style="padding: 5px 5px 5px 10px">
+					<table>
+					<tr><td><h4 id="modalSelDate">등록 일자를 선택해주세요.</h4></td></tr>
+					<tr><td>
+					<select name="program">
+						<option value="">프로그램을 선택해주세요</option>
+					</select>
+					</td></tr>
+					
+					</table>
+					
+					</div>
+				</div>
+				</div> 
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+					<button type="button" class="btn btn-primary">save</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	
 </body>
 </html>

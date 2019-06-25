@@ -1,4 +1,4 @@
-package com.my.company.common.controller;
+package com.my.company.common.util;
 
 import java.security.MessageDigest;
  

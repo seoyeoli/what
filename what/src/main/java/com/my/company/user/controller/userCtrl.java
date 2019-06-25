@@ -17,8 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.my.company.common.controller.SHA256Password;
 import com.my.company.common.service.commonService;
+import com.my.company.common.util.SHA256Password;
 import com.my.company.schedule.service.scheduleService;
 import com.my.company.schedule.vo.scheduleVO;
 import com.my.company.user.service.userService;
